@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import thymeleafstudy.thymeleaf.form.domain.item.Item;
 import thymeleafstudy.thymeleaf.form.domain.item.ItemRepository;
+import thymeleafstudy.thymeleaf.form.domain.item.ItemType;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -32,6 +33,14 @@ public class FormItemController {
         regions.put("JEJU", "제주");
 
         return regions;
+    }
+
+    /**
+     * 컨트롤러가 호출될 때 마다 자동 호출
+     */
+    @ModelAttribute("itemTypes")
+    public ItemType[] itemTypes() {
+        return ItemType.values();
     }
 
     @GetMapping
