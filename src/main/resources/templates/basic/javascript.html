@@ -9,7 +9,7 @@
 <!--    var username = [[${user.username}]]; /* 해당 코드는 자바스크립트에 맞지 않아 오류 발생 var username = "[[${user.username}]]"이 옳은 코드 */-->
 <!--    var age = [[${user.age}]];-->
 
-<!--    var username2 = /*[[${user.username}]]*/ "test username";-->
+<!--    var username2 = /*[[${user.username}]]*/ "test username"; /* 주석 역시 변수 값으로 저장됨 */-->
 
 <!--    var user = [[${user}]];-->
 <!--</script>-->
@@ -22,6 +22,12 @@
     var username2 = "test username";
 
     var user = [[${user}]];
+</script>
+
+<script th:inline="javascript">
+    [# th:each="user, stat : ${users}"]
+    var user[[${stat.count}]] = [[${user}]];
+    [/]
 </script>
 
 </body>
