@@ -6,10 +6,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import thymeleafstudy.thymeleaf.form.domain.item.DeliveryCode;
 import thymeleafstudy.thymeleaf.form.domain.item.Item;
 import thymeleafstudy.thymeleaf.form.domain.item.ItemRepository;
 import thymeleafstudy.thymeleaf.form.domain.item.ItemType;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +43,19 @@ public class FormItemController {
     @ModelAttribute("itemTypes")
     public ItemType[] itemTypes() {
         return ItemType.values();
+    }
+
+    /**
+     * 컨트롤러가 호출될 때 마다 자동 호출
+     */
+    @ModelAttribute("deliveryCodes")
+    public List<DeliveryCode> deliveryCodes() {
+        ArrayList<DeliveryCode> deliveryCodes = new ArrayList<>();
+        deliveryCodes.add(new DeliveryCode("FAST", "빠른 배송"));
+        deliveryCodes.add(new DeliveryCode("NORMAL", "일반 배송"));
+        deliveryCodes.add(new DeliveryCode("SLOW", "느린 배송"));
+
+        return deliveryCodes;
     }
 
     @GetMapping
